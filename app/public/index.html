@@ -3,82 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IDN Training - Login & Dashboard</title>
+  <title>My Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-
-  <!-- Login Section -->
-  <div id="login-section" class="w-full max-w-md p-8 space-y-6 bg-white shadow-xl rounded-2xl">
-    <div class="text-center">
-      <h1 class="text-3xl font-bold text-gray-800">IDN Training</h1>
-      <p class="text-sm text-gray-500 mt-1">Login to continue</p>
-    </div>
-
-    <form id="login-form" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" id="email" placeholder="you@example.com"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="password" id="password" placeholder="••••••••"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-      </div>
-      <button type="submit"
-        class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-        Sign In
-      </button>
-    </form>
-  </div>
-
-  <!-- Dashboard Section (Hidden by Default) -->
-  <div id="dashboard-section" class="hidden w-full max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-2xl">
-    <div class="flex justify-between items-center border-b pb-4 mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">Welcome to Dashboard</h2>
-      <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-blue-100 p-6 rounded-xl shadow">
-        <h3 class="text-xl font-semibold text-blue-700">User Info</h3>
-        <p class="mt-2 text-gray-600">Email: <span id="user-email" class="font-medium text-gray-800"></span></p>
-      </div>
-      <div class="bg-green-100 p-6 rounded-xl shadow">
-        <h3 class="text-xl font-semibold text-green-700">Training Status</h3>
-        <p class="mt-2 text-gray-600">You are currently enrolled in the <strong>Web Development Bootcamp</strong>.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- JavaScript Logic -->
-  <script>
-    const loginForm = document.getElementById('login-form');
-    const loginSection = document.getElementById('login-section');
-    const dashboardSection = document.getElementById('dashboard-section');
-    const userEmailDisplay = document.getElementById('user-email');
-
-    loginForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      // Fake login validation
-      if (email && password) {
-        userEmailDisplay.textContent = email;
-        loginSection.classList.add('hidden');
-        dashboardSection.classList.remove('hidden');
-      } else {
-        alert('Please enter your credentials.');
+  <style>
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
       }
-    });
-
-    function logout() {
-      dashboardSection.classList.add('hidden');
-      loginSection.classList.remove('hidden');
-      loginForm.reset();
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-  </script>
+
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Header / Hero -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 bg-white shadow-md">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fadeInUp">Hi, I'm <span class="text-blue-600">Your Name</span></h1>
+    <p class="text-lg md:text-xl text-gray-600 max-w-xl animate-fadeInUp delay-200">A passionate Web Developer crafting clean and user-friendly experiences.</p>
+    <a href="#projects" class="mt-8 px-6 py-3 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-700 transition animate-fadeInUp delay-300">View My Work</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 px-6 bg-gray-50 text-center">
+    <h2 class="text-3xl font-bold mb-6">About Me</h2>
+    <p class="text-gray-700 max-w-2xl mx-auto text-lg animate-fadeInUp">I specialize in building modern web applications with responsive designs, performance optimization, and clean code. Whether it's React, Angular, or plain HTML/CSS/JS, I bring ideas to life.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-10">Projects</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- Project Card -->
+      <div class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Project One</h3>
+        <p class="text-gray-600 mb-4">A responsive web app for task management with React.</p>
+        <a href="#" class="text-blue-600 hover:underline">View Project →</a>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Project Two</h3>
+        <p class="text-gray-600 mb-4">A personal blog built with static site generators and Markdown.</p>
+        <a href="#" class="text-blue-600 hover:underline">View Project →</a>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Project Three</h3>
+        <p class="text-gray-600 mb-4">A landing page template for small businesses using Tailwind CSS.</p>
+        <a href="#" class="text-blue-600 hover:underline">View Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-6 bg-gray-100 text-center">
+    <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+    <p class="text-lg text-gray-700 mb-6">Interested in working together? Feel free to reach out!</p>
+    <a href="mailto:your@email.com" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-700 transition">Email Me</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-white border-t text-sm text-gray-500">
+    © 2025 ahapsin. All rights reserved.
+  </footer>
+
 </body>
 </html>
