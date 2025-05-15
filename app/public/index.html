@@ -3,63 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - IDN Training</title>
+  <title>IDN Training - Login & Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-xl rounded-2xl">
-    
-    <!-- Header -->
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <!-- Login Section -->
+  <div id="login-section" class="w-full max-w-md p-8 space-y-6 bg-white shadow-xl rounded-2xl">
     <div class="text-center">
       <h1 class="text-3xl font-bold text-gray-800">IDN Training</h1>
-      <p class="text-sm text-gray-500 mt-1">Welcome back! Please login to your account</p>
+      <p class="text-sm text-gray-500 mt-1">Login to continue</p>
     </div>
 
-    <!-- Form -->
-    <form class="space-y-4">
+    <form id="login-form" class="space-y-4">
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="you@example.com"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" placeholder="you@example.com"
+          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
       </div>
-      
       <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="••••••••"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
+        <label class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" placeholder="••••••••"
+          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
       </div>
-
-      <div class="flex items-center justify-between text-sm">
-        <label class="flex items-center space-x-2">
-          <input type="checkbox" class="form-checkbox" />
-          <span>Remember me</span>
-        </label>
-        <a href="#" class="text-blue-600 hover:underline">Forgot password?</a>
-      </div>
-
-      <button
-        type="submit"
-        class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
-      >
+      <button type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
         Sign In
       </button>
     </form>
-
-    <!-- Footer -->
-    <p class="text-center text-sm text-gray-500">
-      Don't have an account?
-      <a href="#" class="text-blue-600 hover:underline">Sign up</a>
-    </p>
   </div>
+
+  <!-- Dashboard Section (Hidden by Default) -->
+  <div id="dashboard-section" class="hidden w-full max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-2xl">
+    <div class="flex justify-between items-center border-b pb-4 mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Welcome to Dashboard</h2>
+      <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-blue-100 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-blue-700">User Info</h3>
+        <p class="mt-2 text-gray-600">Email: <span id="user-email" class="font-medium text-gray-800"></span></p>
+      </div>
+      <div class="bg-green-100 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-green-700">Training Status</h3>
+        <p class="mt-2 text-gray-600">You are currently enrolled in the <strong>Web Development Bootcamp</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const userEmailDisplay = document.getElementById('user-email');
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Fake login validation
+      if (email && password) {
+        userEmailDisplay.textContent = email;
+        loginSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+      } else {
+        alert('Please enter your credentials.');
+      }
+    });
+
+    function logout() {
+      dashboardSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+      loginForm.reset();
+    }
+  </script>
 </body>
 </html>
